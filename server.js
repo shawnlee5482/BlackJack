@@ -7,6 +7,9 @@ var path = require('path');
 // instantiate the app
 var app = express();
 
+// include mongoose.js
+require('./server/config/mongoose.js');
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

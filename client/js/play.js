@@ -1,5 +1,8 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
+/**
+ * Created by 이성찬 on 2016-07-31.
+ */
+var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
 var axios = require('axios');
 var Router = ReactRouter.Router,
@@ -8,40 +11,26 @@ var Router = ReactRouter.Router,
 var Link = ReactRouter.Link;
 
 module.exports = React.createClass({
-  getInitialState: function() {
-    return {
-      title: ''
-    }
-  },
 
-  // handleButtonClick(event) {
-  //   event.preventDefault();
-  //   console.log('search title = ', this.state.title);
-  //
-  //   var query = 'http://www.omdbapi.com/?t='+this.state.title+'&y=&plot=short&r=json';
-  //   var myprops = this.props;
-  //   axios.get(query)
-  //     .then(function (response) {
-  //       console.log('response from server = ', response.data);
-  //       myprops.route.result(JSON.stringify(response.data)); // callback function
-  //       hashHistory.push({pathname: 'result', state: {result: JSON.stringify(response.data)}});
-  //     })
-  // },
-  //
-  // handleTitleChange(event) {
-  //   // this.setState({course: event.target.value });
-  //   this.state.title = event.target.value;
-  //   console.log('title = ', this.state.title);
-  // },
+  getInitialState: function() {
+    console.log('initial state of play = ', this.props.location.state);
+    var query = 'gameinfo/'+this.props.location.state.id;
+    axios.get(query)
+      .then(function (response) {
+        console.log('response from server = ', response.data);
+        return response.data;
+      })
+
+    // change the background
+
+    return {id:this.props.location.state.id, name: this.props.location.state.name};
+  },
 
   render: function (){
     return (
-      <div> <h1> WOW </h1> </div>
-    //   <div>
-    //   <h1>Search Movie</h1>
-    // <p>Title: <input onChange={this.handleTitleChange}/></p>
-    // <p><button onClick={this.handleButtonClick}>Submit</button></p>
-    // </div>
+      <div>
+      <h1>BlackJack Game</h1>
+    </div>
     )
   }
 });

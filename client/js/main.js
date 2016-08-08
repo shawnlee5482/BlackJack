@@ -6,22 +6,27 @@ var Router = ReactRouter.Router,
   hashHistory = ReactRouter.hashHistory;
 var Link = ReactRouter.Link;
 
+
+var Rooms = require('./rooms.js');
+var Join = require('./join.js');
 var Play = require('./play.js');
+var Login = require('./login.js');
 
-var App = React.createClass({
+var Main = React.createClass({
   getInitialState: function() {
-    return {
-      result: {}
-    }
-  },
-
+    return null;
+  }
+  ,
   render: function(){
     return (
       <Router history={hashHistory}>
-        <Route path='/' component={Play}/>
+        <Route path='/' component={Login}> </Route>
+        <Route path='/rooms' component={Rooms}> </Route>
+        <Route path='/join/:id' component={Join}> </Route>
+        <Route path='/play' component={Play}></Route>
       </Router>
     )
   }
 });
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render(<Main/>, document.getElementById('main'));
